@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SchedulingCore.Entities;
 
-namespace SchedulingCore.Services;
-
+namespace SchedulingCore.Interfaces;
 public interface IScheduleService
 {
     void AddActivity(Schedule schedule, ScheduledActivity activity);
@@ -18,4 +13,7 @@ public interface IScheduleService
         TimeSpan duration);
 
     bool HasConflicts(Schedule schedule, ScheduledActivity activity);
+
+    IEnumerable<TimeSlot> GetOccupiedTimeSlots(Schedule schedule, DateTime data);
+    IEnumerable<TimeSlot> GetAllOccupiedTimeSlots(Schedule schedule);
 }

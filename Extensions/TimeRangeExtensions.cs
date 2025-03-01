@@ -1,4 +1,5 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using SchedulingCore.Entities;
+using System.Runtime.ExceptionServices;
 
 namespace SchedulingCore.Extensions;
 

@@ -1,14 +1,13 @@
-﻿
-using SchedulingCore.Shared;
+﻿using SchedulingCore.Shared;
 
-namespace SchedulingCore;
+namespace SchedulingCore.Entities;
 
 public class RecurrenceRule
 {
     public Guid Id { get; set; }
     public RecurrenceFrequency Frequency { get; set; }
     public int Interval { get; set; }
-    
+
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public int? Count { get; set; }

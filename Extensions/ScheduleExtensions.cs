@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchedulingCore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,7 +96,12 @@ public static class ScheduleExtensions
         var dayEnd = dayStart.AddDays(1).AddTicks(-1);
 
         var activitiesOnDay = schedule.GetActivitiesInRange(dayStart, dayEnd);
-        return activitiesOnDay.Select(a => a.TimeRange).ToList();
+        return activitiesOnDay.Select(a => a.TimeRange).OrderBy(a => a.Start).ToList();
 
+    }
+
+    public static IEnumerable<TimeRange> GetAllOccupiedTimeSlots(this Schedule schedule)
+    {
+        return schedule.Activities.Select(activity => activity.TimeRange).ToList();
     }
 }

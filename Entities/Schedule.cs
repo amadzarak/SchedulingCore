@@ -1,5 +1,4 @@
-﻿
-namespace SchedulingCore;
+﻿namespace SchedulingCore.Entities;
 
 public class Schedule
 {

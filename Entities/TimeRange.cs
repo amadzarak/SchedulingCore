@@ -1,4 +1,4 @@
-﻿namespace SchedulingCore;
+﻿namespace SchedulingCore.Entities;
 
 public abstract class TimeRange
 {

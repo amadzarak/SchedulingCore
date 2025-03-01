@@ -1,6 +1,6 @@
 ﻿using SchedulingCore.Shared;
 
-namespace SchedulingCore;
+namespace SchedulingCore.Entities;
 
 public class ScheduledActivity
 {

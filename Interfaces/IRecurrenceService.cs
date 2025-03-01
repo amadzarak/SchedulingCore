@@ -1,14 +1,15 @@
-﻿using System;
+﻿using SchedulingCore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchedulingCore.Services;
+namespace SchedulingCore.Interfaces;
 
 public interface IRecurrenceService
 {
-    Task<IEnumerable<ScheduledActivity>> GenerateOccurrencesAsync(
+    Task<IEnumerable<DateTime>> GenerateOccurrencesAsync(
         Guid recurringActivityId,
         DateTime start,
         DateTime end);
