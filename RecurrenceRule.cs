@@ -22,15 +22,5 @@ public class RecurrenceRule
     public int? WeekOfMonth { get; set; }
 
     // FOR EXCLUSIONS
-    public DateTime[] ExcludedDate { get; set; }
-
-        
-}
-
-
-public abstract class RecurrenceRuleManager
-{
-    // METHODS
-    public abstract IEnumerable<DateTime> GenerateOccurences(DateTime? until = null);
-    public abstract bool OccursOn(DateTime date);
+    public DateTime[] ExcludedDates { get; set; }
 }
