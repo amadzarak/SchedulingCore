@@ -41,8 +41,61 @@ public static class ScheduleExtensions
         this Schedule schedule, DateTime start, DateTime end, TimeSpan duration)
     {
         var availableSlots = new List<TimeRange>();
+        var searchRange = new FixedTimeRange(start, end);
+        
+        // Get all activities that overlap with our search range
+        var activitiesInRange = schedule.GetActivitiesInRange(start, end)
+            .Select(a => a.TimeRange)
+            .OrderBy(tr => tr.Start)
+            .ToList();
+        
+        // If no activities, the entire range is available
+        if (!activitiesInRange.Any())
+        {
+            if (end - start >= duration)
+            {
+                availableSlots.Add(new FixedTimeRange(start, end));
+            }
+            return availableSlots;
+        }
+        
+        // Check for available slot before the first activity
+        var firstActivityStart = activitiesInRange.First().Start;
+        if (firstActivityStart > start && (firstActivityStart - start) >= duration)
+        {
+            availableSlots.Add(new FixedTimeRange(start, firstActivityStart));
+        }
+        
+        // Check for available slots between activities
+        for (int i = 0; i < activitiesInRange.Count - 1; i++)
+        {
+            var currentEnd = activitiesInRange[i].End;
+            var nextStart = activitiesInRange[i + 1].Start;
+            
+            if (nextStart > currentEnd && (nextStart - currentEnd) >= duration)
+            {
+                availableSlots.Add(new FixedTimeRange(currentEnd, nextStart));
+            }
+        }
+        
+        // Check for available slot after the last activity
+        var lastActivityEnd = activitiesInRange.Last().End;
+        if (end > lastActivityEnd && (end - lastActivityEnd) >= duration)
+        {
+            availableSlots.Add(new FixedTimeRange(lastActivityEnd, end));
+        }
 
         return availableSlots;
+
+    }
+
+    public static IEnumerable<TimeRange> GetOccupiedTimeSlots(this Schedule schedule, DateTime date)
+    {
+        var dayStart = date.Date;
+        var dayEnd = dayStart.AddDays(1).AddTicks(-1);
+
+        var activitiesOnDay = schedule.GetActivitiesInRange(dayStart, dayEnd);
+        return activitiesOnDay.Select(a => a.TimeRange).ToList();
 
     }
 }

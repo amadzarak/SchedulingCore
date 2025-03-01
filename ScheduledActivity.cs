@@ -21,10 +21,4 @@ public class ScheduledActivity
     public virtual Schedule Schedule { get; set; }
     public Guid ScheduleId { get; set; }
 
-    // CALCULATED PROPERTY NO DATABASE COLUMN
-    public IEnumerable<TimeSlot> GetOccupiedTimeSlots(IEnumerable<TimeSlot> availableSlots)
-    {
-        return [];
-    }
-
 }
