@@ -5,11 +5,15 @@ public abstract class TimeRange
     public DateTime Start { get; set; }
     public DateTime End { get; set; }
     public TimeSpan Duration => End - Start;
+
+    public virtual bool Overlaps(TimeRange Other)
+    {
+        return Start < Other.Start && End > Other.End;
+    }
 }
 
 public abstract class TimeRangeManager
 {
-    public abstract bool Overlaps(TimeRange other);
     public abstract bool Contains(TimeRange other);
     public abstract bool IsAdjacentTo(TimeRange other, TimeSpan tolerance = default);
     public abstract TimeRange MergeWith(TimeRange other);
@@ -47,11 +51,5 @@ public class FixedTimeRangeManager : TimeRangeManager
     public override TimeRange MergeWith(TimeRange other)
     {
         throw new NotImplementedException();
-    }
-
-    public override bool Overlaps(TimeRange other)
-    {
-        throw new NotImplementedException();
-//        return Start < other.End && End > other.Start;
     }
 }
