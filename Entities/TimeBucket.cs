@@ -1,5 +1,4 @@
-﻿
-namespace SchedulingCore;
+﻿namespace SchedulingCore.Entities;
 
 public class TimeBucket
 {
@@ -9,15 +8,6 @@ public class TimeBucket
     public TimeSpan Capacity { get; set; }
     public TimeSpan UsedCapacity { get; set; }
     public TimeSpan RemainingCapacity => Capacity - UsedCapacity;
-    
     // NAVIGATION PROPERTIES
     public virtual ICollection<ScheduledActivity> Activities { get; set; }
-
-    public bool CanFit(TimeSpan duration)
-        => true;
-
-    public void Assign(ScheduledActivity activity) { }
-    public void UnAssign(ScheduledActivity activity) { }
 }
-
-

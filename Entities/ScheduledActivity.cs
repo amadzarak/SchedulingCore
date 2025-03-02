@@ -1,6 +1,6 @@
 ﻿using SchedulingCore.Shared;
 
-namespace SchedulingCore;
+namespace SchedulingCore.Entities;
 
 public class ScheduledActivity
 {
@@ -20,11 +20,5 @@ public class ScheduledActivity
     // NAVIGATION PROPERTIES
     public virtual Schedule Schedule { get; set; }
     public Guid ScheduleId { get; set; }
-
-    // CALCULATED PROPERTY NO DATABASE COLUMN
-    public IEnumerable<TimeSlot> GetOccupiedTimeSlots(IEnumerable<TimeSlot> availableSlots)
-    {
-        return [];
-    }
 
 }

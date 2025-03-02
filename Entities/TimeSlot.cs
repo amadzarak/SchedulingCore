@@ -1,5 +1,4 @@
-﻿
-namespace SchedulingCore;
+﻿namespace SchedulingCore.Entities;
 
 public class TimeSlot
 {
@@ -8,5 +7,4 @@ public class TimeSlot
     public TimeSpan Duration { get; set; }
     public TimeSpan EndTime => StartTime + Duration;
     public DayOfWeek[] ApplicableDays { get; set; }
-
 }

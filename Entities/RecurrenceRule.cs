@@ -1,14 +1,13 @@
-﻿
-using SchedulingCore.Shared;
+﻿using SchedulingCore.Shared;
 
-namespace SchedulingCore;
+namespace SchedulingCore.Entities;
 
 public class RecurrenceRule
 {
     public Guid Id { get; set; }
     public RecurrenceFrequency Frequency { get; set; }
     public int Interval { get; set; }
-    
+
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public int? Count { get; set; }
@@ -22,15 +21,5 @@ public class RecurrenceRule
     public int? WeekOfMonth { get; set; }
 
     // FOR EXCLUSIONS
-    public DateTime[] ExcludedDate { get; set; }
-
-        
-}
-
-
-public abstract class RecurrenceRuleManager
-{
-    // METHODS
-    public abstract IEnumerable<DateTime> GenerateOccurences(DateTime? until = null);
-    public abstract bool OccursOn(DateTime date);
+    public DateTime[] ExcludedDates { get; set; }
 }
